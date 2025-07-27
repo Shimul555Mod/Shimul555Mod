@@ -3,410 +3,540 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>ShimulUI WebFont CDN – Professional Stylish Cards</title>
-<meta name="description" content="Advanced stylish cards with live font preview and beautiful code boxes with copy buttons" />
+<title>ShimulUI WebFont CDN – Advanced Premium Design</title>
+<meta name="description" content="Advanced premium cards with dark mode, live font preview, and beautiful code boxes with copy buttons" />
+
+<!-- Preload Fonts for faster loading -->
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/Shimul555Mod/Shimul555Mod@main/WebFontS555M/UIFont/ShimulUIBDFontA/ShimulUIBDFontA.woff" as="font" type="font/woff" crossorigin="anonymous" />
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/Shimul555Mod/Shimul555Mod@main/WebFontS555M/UIFont/ShimulUIBDFontB/ShimulUIBDFontB.woff" as="font" type="font/woff" crossorigin="anonymous" />
+
 <style>
-  /* Reset */
+  /* CSS Variables for Theming (Light/Dark Mode) */
+  :root {
+    --bg-gradient-start: #e0e7ff;
+    --bg-gradient-end: #fef3c7;
+    --card-bg: #ffffff;
+    --text-color: #1e293b;
+    --heading-color: #2563eb;
+    --subtle-text-color: #475569;
+    --card-shadow: 0 10px 20px rgb(37 99 235 / 0.1), 0 4px 6px rgb(0 0 0 / 0.07);
+    --card-hover-shadow: 0 20px 40px rgb(37 99 235 / 0.25), 0 8px 12px rgb(0 0 0 / 0.1);
+    --code-bg: #0f172a;
+    --code-color: #f8fafc;
+    --code-line-num-color: #94a3b8;
+    --code-shadow: inset 0 0 15px rgb(59 130 246 / 0.5);
+    --font-preview-shadow: 0 2px 8px rgba(37, 99, 235, 0.4);
+    --switch-bg: #e2e8f0;
+    --switch-handle-bg: #fff;
+    --switch-icon-color: #2563eb;
+  }
+
+  [data-theme="dark"] {
+    --bg-gradient-start: #1e293b;
+    --bg-gradient-end: #0f172a;
+    --card-bg: #1e293b;
+    --text-color: #cbd5e1;
+    --heading-color: #60a5fa;
+    --subtle-text-color: #94a3b8;
+    --card-shadow: 0 10px 20px rgb(0 0 0 / 0.3), 0 4px 6px rgb(0 0 0 / 0.2);
+    --card-hover-shadow: 0 20px 40px rgb(96 165 250 / 0.3), 0 8px 12px rgb(0 0 0 / 0.2);
+    --code-bg: #020617;
+    --code-color: #e2e8f0;
+    --code-line-num-color: #64748b;
+    --font-preview-shadow: 0 2px 10px rgba(96, 165, 250, 0.5);
+    --switch-bg: #334155;
+    --switch-handle-bg: #1e293b;
+    --switch-icon-color: #fef3c7;
+  }
+
+  /* Base Styles */
   *, *::before, *::after {
     box-sizing: border-box;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
   }
   body {
-    margin: 0; padding: 2rem 1rem 4rem;
+    margin: 0;
+    padding: 2rem 1rem 4rem;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: linear-gradient(135deg, #e0e7ff, #fef3c7);
+    background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
     min-height: 100vh;
-    color: #1e293b;
+    color: var(--text-color);
     display: flex;
     flex-direction: column;
     align-items: center;
   }
   h1 {
-    color: #2563eb;
+    color: var(--heading-color);
     margin-bottom: 0.2rem;
     font-weight: 800;
+    font-size: 2.5rem;
     text-shadow: 0 2px 8px rgba(37, 99, 235, 0.35);
     text-align: center;
   }
   p.lead {
-    max-width: 480px;
+    max-width: 520px;
     text-align: center;
     font-size: 1.15rem;
-    color: #334155;
+    color: var(--subtle-text-color);
     margin-bottom: 3rem;
   }
 
-  /* Container for cards */
+  /* Theme Switcher */
+  .theme-switcher {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+    gap: 0.75rem;
+  }
+  .switch-label {
+    font-weight: 600;
+    color: var(--subtle-text-color);
+  }
+  .switch {
+    width: 56px; height: 30px;
+    background: var(--switch-bg);
+    border-radius: 15px;
+    cursor: pointer;
+    position: relative;
+  }
+  .switch-handle {
+    width: 24px; height: 24px;
+    background: var(--switch-handle-bg);
+    border-radius: 50%;
+    position: absolute;
+    top: 3px; left: 4px;
+    transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .switch-handle svg {
+    width: 16px; height: 16px;
+    color: var(--switch-icon-color);
+  }
+  #theme-toggle:checked + .switch .switch-handle {
+    transform: translateX(25px);
+  }
+  #theme-toggle { display: none; }
+
+
+  /* Cards Container */
   .cards-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 2.2rem;
-    max-width: 1100px;
+    gap: 2.5rem;
+    max-width: 1200px;
     width: 100%;
     justify-content: center;
   }
 
-  /* Single card */
+  /* Single Card */
   .card {
-    background: #fff;
-    border-radius: 16px;
-    box-shadow:
-      0 10px 20px rgb(37 99 235 / 0.15),
-      0 4px 6px rgb(0 0 0 / 0.1);
-    width: 360px;
+    background: var(--card-bg);
+    border-radius: 20px;
+    box-shadow: var(--card-shadow);
+    width: 380px;
     padding: 2.5rem 2.8rem 3rem;
     display: flex;
     flex-direction: column;
     position: relative;
     transition: box-shadow 0.3s ease, transform 0.3s ease;
-    cursor: default;
   }
-  .card:hover,
-  .card:focus-within {
-    box-shadow:
-      0 20px 40px rgb(37 99 235 / 0.35),
-      0 8px 12px rgb(0 0 0 / 0.15);
-    transform: translateY(-7px);
-    outline: none;
+  .card:hover {
+    box-shadow: var(--card-hover-shadow);
+    transform: translateY(-8px);
   }
 
-  /* Font header with name + preview */
+  /* Font Header */
   .font-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.4rem;
-    user-select: none;
+    margin-bottom: 1.5rem;
   }
   .font-name {
     font-weight: 700;
-    font-size: 1.5rem;
-    color: #1e293b;
-    flex-shrink: 0;
+    font-size: 1.6rem;
+    color: var(--text-color);
   }
   .font-preview {
     font-family: var(--font-family, monospace);
     font-weight: 700;
-    font-size: 2.6rem;
-    color: #2563eb;
-    text-shadow: 0 0 5px rgb(37 99 235 / 0.45);
-    user-select: none;
-    flex-grow: 1;
-    text-align: right;
+    font-size: 2.8rem;
+    color: var(--heading-color);
+    text-shadow: var(--font-preview-shadow);
     letter-spacing: 0.07em;
+    margin-top: 0.5rem;
   }
 
-  /* Code block with line numbers */
+  /* Live Preview Input Field - New Feature */
+  .live-preview-input {
+    width: 100%;
+    font-family: var(--font-family, monospace);
+    font-size: 1.2rem;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--switch-bg);
+    border-radius: 10px;
+    background-color: transparent;
+    color: var(--text-color);
+    margin-bottom: 2rem;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .live-preview-input:focus {
+    border-color: var(--heading-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
+  }
+
+
+  /* Code Block */
   .code-block {
     position: relative;
-    background: #0f172a;
-    color: #f8fafc;
+    background: var(--code-bg);
+    color: var(--code-color);
     font-family: 'Fira Mono', Consolas, Monaco, monospace;
     font-size: 0.92rem;
     border-radius: 12px;
-    padding: 1.8rem 2.4rem 1.8rem 3.8rem;
-    line-height: 1.5;
+    line-height: 1.6;
     white-space: pre-wrap;
-    overflow-x: auto;
-    box-shadow: inset 0 0 20px rgb(59 130 246 / 0.75);
-    margin-bottom: 2rem;
-    counter-reset: line-num;
+    box-shadow: var(--code-shadow);
+    margin-bottom: 1.5rem;
+    padding-top: 2.5rem; /* Space for copy button */
   }
   .code-block pre {
     margin: 0;
-  }
-  /* Line numbers using CSS counters */
-  .code-block pre > * {
-    counter-increment: line-num;
-  }
-  .code-block pre > *::before {
-    content: counter(line-num);
-    position: absolute;
-    left: 10px;
-    color: #94a3b8;
-    font-size: 0.8rem;
-    user-select: none;
-  }
-
-  /* For multi-line code block line numbers */
-  .code-block pre {
-    display: block;
+    padding: 1.2rem 1.5rem 1.2rem;
     counter-reset: line-num;
+    overflow-x: auto;
   }
   .code-block pre > span {
     display: block;
-    counter-increment: line-num;
-    padding-left: 2.4rem;
     position: relative;
+    padding-left: 2.5rem;
   }
   .code-block pre > span::before {
     content: counter(line-num);
+    counter-increment: line-num;
     position: absolute;
     left: 0;
-    color: #94a3b8;
+    color: var(--code-line-num-color);
     font-size: 0.8rem;
     user-select: none;
   }
-
-  /* Copy button */
+  
+  /* Copy Button & Tooltip */
   .copy-btn {
     position: absolute;
-    top: 14px;
-    right: 16px;
+    top: 12px;
+    right: 12px;
     background: #2563eb;
     color: white;
     border: none;
-    padding: 6px 12px;
+    padding: 5px 12px;
     border-radius: 8px;
     font-weight: 600;
-    font-size: 0.87rem;
+    font-size: 0.85rem;
     cursor: pointer;
-    box-shadow: 0 3px 6px rgb(37 99 235 / 0.45);
-    transition: background-color 0.3s ease;
+    box-shadow: 0 2px 5px rgb(0 0 0 / 0.3);
+    transition: background-color 0.3s ease, transform 0.2s ease;
     user-select: none;
-    z-index: 20;
+    z-index: 10;
   }
-  .copy-btn:hover,
-  .copy-btn:focus {
-    background: #1d4ed8;
-    outline: none;
-  }
-  .copy-btn:active {
-    background: #1e40af;
-  }
+  .copy-btn:hover { background: #1d4ed8; transform: scale(1.05); }
+  .copy-btn:active { background: #1e40af; transform: scale(0.98); }
 
-  /* Tooltip */
   .tooltip {
     position: absolute;
-    top: -36px;
-    right: 16px;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    transform: translateX(-50%);
     background: #2563eb;
     color: #fff;
-    font-size: 0.75rem;
+    font-size: 0.8rem;
     padding: 5px 11px;
     border-radius: 6px;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.25s ease;
+    transition: opacity 0.25s ease, transform 0.25s ease;
     white-space: nowrap;
-    box-shadow: 0 2px 7px rgb(37 99 235 / 0.6);
+    box-shadow: 0 2px 7px rgb(0 0 0 / 0.5);
     user-select: none;
-    z-index: 30;
+    z-index: 20;
   }
-  .tooltip.visible {
+  .copy-btn-container { position: relative; }
+  .copy-btn-container .tooltip.visible {
     opacity: 1;
-    pointer-events: auto;
+    transform: translateX(-50%) translateY(-5px);
   }
 
   /* Usage Section */
   .usage {
     max-width: 720px;
-    background: #fff;
+    background: var(--card-bg);
     border-radius: 16px;
-    box-shadow: 0 8px 24px rgb(37 99 235 / 0.15);
+    box-shadow: var(--card-shadow);
     padding: 2.5rem 3.2rem;
     font-size: 1rem;
     line-height: 1.7;
-    color: #1e293b;
     margin-top: 4rem;
   }
   .usage h2 {
-    color: #2563eb;
+    color: var(--heading-color);
     font-weight: 800;
     font-size: 1.75rem;
     margin-top: 0;
     margin-bottom: 1.4rem;
     text-align: center;
-    text-shadow: 0 1px 4px rgb(37 99 235 / 0.4);
   }
-  .usage ol {
-    padding-left: 1.7rem;
-  }
-  .usage ol li {
-    margin-bottom: 1rem;
-  }
+  .usage ol { padding-left: 1.7rem; }
+  .usage ol li { margin-bottom: 1rem; }
 
-  /* Responsive */
+  /* Responsive Design */
   @media (max-width: 860px) {
-    .cards-container {
-      gap: 1.6rem;
-    }
-    .card {
-      width: 100%;
-      max-width: 430px;
-    }
-    .font-preview {
-      font-size: 2.4rem !important;
-    }
+    .card { width: 100%; max-width: 450px; }
   }
-  @media (max-width: 420px) {
-    .font-header {
-      flex-direction: column;
-      gap: 0.4rem;
-      align-items: flex-start;
-    }
-    .font-preview {
-      font-size: 1.9rem !important;
-      text-align: left;
-    }
-    .copy-btn {
-      top: 12px;
-      right: 14px;
-      padding: 5px 11px;
-      font-size: 0.8rem;
-    }
+  @media (max-width: 480px) {
+    body { padding: 1.5rem 1rem 3rem; }
+    h1 { font-size: 2rem; }
+    p.lead { font-size: 1rem; }
+    .font-preview { font-size: 2.2rem !important; }
+    .card { padding: 2rem 1.8rem 2.5rem; }
   }
 </style>
 
-<!-- Preload font -->
-<link rel="preload" 
-      href="https://cdn.jsdelivr.net/gh/Shimul555Mod/Shimul555Mod@main/WebFontS555M/UIFont/ShimulUIBDFontA/ShimulUIBDFontA.woff" 
-      as="font" 
-      type="font/woff" 
-      crossorigin="anonymous" />
+<!-- Define Fonts using @font-face -->
+<style>
+  @font-face {
+    font-family: 'ShimulUIBDFontA';
+    src: url('https://cdn.jsdelivr.net/gh/Shimul555Mod/Shimul555Mod@main/WebFontS555M/UIFont/ShimulUIBDFontA/ShimulUIBDFontA.woff') format('woff');
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'ShimulUIBDFontB';
+    src: url('https://cdn.jsdelivr.net/gh/Shimul555Mod/Shimul555Mod@main/WebFontS555M/UIFont/ShimulUIBDFontB/ShimulUIBDFontB.woff') format('woff');
+    font-style: normal;
+    font-display: swap;
+  }
+</style>
 
 </head>
-<body>
+<body data-theme="light">
 
   <h1>ShimulUI WebFont CDN</h1>
-  <p class="lead">Advanced stylish cards with live font preview &amp; beautiful code boxes</p>
+  <p class="lead">একটি আধুনিক, prémium ডিজাইন, ডার্ক মোড এবং লাইভ ফন্ট প্রিভিউ ফিচারসহ।</p>
+
+  <!-- Theme Switcher -->
+  <div class="theme-switcher">
+    <span class="switch-label">Light</span>
+    <input type="checkbox" id="theme-toggle">
+    <label for="theme-toggle" class="switch">
+      <span class="switch-handle">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="sun-icon"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.106a.75.75 0 010 1.06l-1.591 1.59a.75.75 0 11-1.06-1.06l1.59-1.591a.75.75 0 011.06 0zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5h2.25a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 01-1.06 0l-1.59-1.591a.75.75 0 111.06-1.06l1.591 1.59a.75.75 0 010 1.06zM12 21a.75.75 0 01-.75-.75v-2.25a.75.75 0 011.5 0v2.25a.75.75 0 01-.75.75zM5.106 17.834a.75.75 0 010-1.06l1.591-1.59a.75.75 0 011.06 1.06l-1.59 1.591a.75.75 0 01-1.06 0zM4.5 12a.75.75 0 01.75-.75h2.25a.75.75 0 010 1.5H5.25a.75.75 0 01-.75-.75zM6.106 5.106a.75.75 0 011.06 0l1.59 1.591a.75.75 0 01-1.06 1.06L6.106 6.166a.75.75 0 010-1.06z"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="moon-icon" style="display: none;"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 004.472-.69a.75.75 0 01.82.162l.805.806a.75.75 0 01-.018 1.053A11.25 11.25 0 0112 21.75c-6.213 0-11.25-5.037-11.25-11.25 0-4.336 2.463-8.09 6.028-9.97l.806-.805z" clip-rule="evenodd"></path></svg>
+      </span>
+    </label>
+    <span class="switch-label">Dark</span>
+  </div>
 
   <main class="cards-container" aria-label="WebFont Cards">
 
     <!-- Card 1 -->
-    <article class="card" tabindex="0" aria-labelledby="card1-title">
+    <article class="card" style="--font-family:'ShimulUIBDFontA', monospace;">
       <header class="font-header">
-        <div class="font-name" id="card1-title">শিমুল UI BDFontA</div>
-        <div class="font-preview" style="--font-family:'ShimulUIBDFontA', monospace;">শিমুল UI</div>
+        <div class="font-name">শিমুল UI BDFontA</div>
+        <div class="font-preview">শিমুল UI</div>
       </header>
 
-      <section class="code-block" aria-label="CSS @font-face code for card 1">
+      <input type="text" class="live-preview-input" placeholder="এখানে ফন্ট টেস্ট করুন..." value="আমার সোনার বাংলা, আমি তোমায় ভালোবাসি।">
+
+      <div class="copy-btn-container">
+        <button class="copy-btn" aria-label="Copy @font-face CSS code">কপি</button>
+        <section class="code-block" aria-label="CSS @font-face code">
 <pre>
 <span>@font-face {</span>
 <span>  font-family: 'ShimulUIBDFontA';</span>
-<span>  src: url('https://cdn.jsdelivr.net/gh/Shimul555Mod/Shimul555Mod@main/WebFontS555M/UIFont/ShimulUIBDFontA/ShimulUIBDFontA.woff') format('woff');</span>
-<span>  font-style: normal;</span>
+<span>  src: url('https://.../ShimulUIBDFontA.woff') format('woff');</span>
 <span>  font-display: swap;</span>
 <span>}</span>
 </pre>
-        <button class="copy-btn" aria-label="Copy @font-face CSS code">কপি</button>
-      </section>
-
-      <section class="code-block" aria-label="HTML preload link for card 1">
-<pre>
-<span>&lt;link rel="preload" </span>
-<span>      href="https://cdn.jsdelivr.net/gh/Shimul555Mod/Shimul555Mod@main/WebFontS555M/UIFont/ShimulUIBDFontA/ShimulUIBDFontA.woff" </span>
-<span>      as="font" </span>
-<span>      type="font/woff" </span>
-<span>      crossorigin="anonymous"&gt;</span>
-</pre>
-        <button class="copy-btn" aria-label="Copy preload link">কপি</button>
-      </section>
-
-      <section class="code-block" aria-label="CSS variable and global font usage for card 1">
-<pre>
-<span>:root {</span>
-<span>  --font-global: 'ShimulUIBDFontA', monospace;</span>
-<span>}</span>
-<span>*,
-body, html, h1, h2, h3, h4, h5, h6,</span>
-<span>p, a, span, div, input, textarea,</span>
-<span>code, pre, button, b, strong, em,</span>
-<span>i, label, section, article, nav {</span>
-<span>  font-family: var(--font-global) !important;</span>
-<span>}</span>
-</pre>
+        </section>
+      </div>
+      
+      <div class="copy-btn-container">
         <button class="copy-btn" aria-label="Copy CSS usage code">কপি</button>
-      </section>
+        <section class="code-block" aria-label="CSS global font usage">
+<pre>
+<span>body {</span>
+<span>  font-family: 'ShimulUIBDFontA', monospace;</span>
+<span>}</span>
+</pre>
+        </section>
+      </div>
     </article>
 
-    <!-- Card 2 (Example for adding new cards easily) -->
-    <article class="card" tabindex="0" aria-labelledby="card2-title">
+    <!-- Card 2 -->
+    <article class="card" style="--font-family:'ShimulUIBDFontB', monospace;">
       <header class="font-header">
-        <div class="font-name" id="card2-title">ShimulUIBD FontB</div>
-        <div class="font-preview" style="--font-family:'ShimulUIBDFontB', monospace;">Shimul UI</div>
+        <div class="font-name">ShimulUIBD FontB</div>
+        <div class="font-preview">Shimul UI</div>
       </header>
+        
+      <input type="text" class="live-preview-input" placeholder="Test the font here..." value="The quick brown fox jumps over the lazy dog.">
 
-      <section class="code-block" aria-label="CSS @font-face code for card 2">
+      <div class="copy-btn-container">
+        <button class="copy-btn" aria-label="Copy @font-face CSS code">কপি</button>
+        <section class="code-block" aria-label="CSS @font-face code">
 <pre>
 <span>@font-face {</span>
 <span>  font-family: 'ShimulUIBDFontB';</span>
-<span>  src: url('https://cdn.jsdelivr.net/gh/Shimul555Mod/Shimul555Mod@main/WebFontS555M/UIFont/ShimulUIBDFontB/ShimulUIBDFontB.woff') format('woff');</span>
-<span>  font-style: normal;</span>
+<span>  src: url('https://.../ShimulUIBDFontB.woff') format('woff');</span>
 <span>  font-display: swap;</span>
 <span>}</span>
 </pre>
-        <button class="copy-btn" aria-label="Copy @font-face CSS code">কপি</button>
-      </section>
+        </section>
+      </div>
 
-      <section class="code-block" aria-label="HTML preload link for card 2">
-<pre>
-<span>&lt;link rel="preload" </span>
-<span>      href="https://cdn.jsdelivr.net/gh/Shimul555Mod/Shimul555Mod@main/WebFontS555M/UIFont/ShimulUIBDFontB/ShimulUIBDFontB.woff" </span>
-<span>      as="font" </span>
-<span>      type="font/woff" </span>
-<span>      crossorigin="anonymous"&gt;</span>
-</pre>
-        <button class="copy-btn" aria-label="Copy preload link">কপি</button>
-      </section>
-
-      <section class="code-block" aria-label="CSS variable and global font usage for card 2">
-<pre>
-<span>:root {</span>
-<span>  --font-global: 'ShimulUIBDFontB', monospace;</span>
-<span>}</span>
-<span>*,
-body, html, h1, h2, h3, h4, h5, h6,</span>
-<span>p, a, span, div, input, textarea,</span>
-<span>code, pre, button, b, strong, em,</span>
-<span>i, label, section, article, nav {</span>
-<span>  font-family: var(--font-global) !important;</span>
-<span>}</span>
-</pre>
+      <div class="copy-btn-container">
         <button class="copy-btn" aria-label="Copy CSS usage code">কপি</button>
-      </section>
+        <section class="code-block" aria-label="CSS global font usage">
+<pre>
+<span>body {</span>
+<span>  font-family: 'ShimulUIBDFontB', monospace;</span>
+<span>}</span>
+</pre>
+        </section>
+      </div>
     </article>
+    
+    <!-- নতুন কার্ডের টেমপ্লেট -->
+    <!--
+    আপনি এখানে নতুন কার্ড যুক্ত করতে পারবেন।
+    নিচের কোডটি কপি করে পেস্ট করুন এবং প্রয়োজন অনুযায়ী পরিবর্তন করুন।
+    1. --font-family এর নাম পরিবর্তন করুন।
+    2. .font-name এ ফন্টের নাম লিখুন।
+    3. .font-preview এ প্রিভিউ টেক্সট দিন।
+    4. live-preview-input এর placeholder পরিবর্তন করুন।
+    5. কোড ব্লকের ভেতরের font-family এবং URL আপনার নতুন ফন্ট অনুযায়ী পরিবর্তন করুন।
+    -->
+    <!--
+    <article class="card" style="--font-family:'YourNewFontName', monospace;">
+      <header class="font-header">
+        <div class="font-name">আপনার ফন্টের নাম</div>
+        <div class="font-preview">ফন্ট প্রিভিউ</div>
+      </header>
+        
+      <input type="text" class="live-preview-input" placeholder="এখানে ফন্ট টেস্ট করুন..." value="এখানে আপনার ডিফল্ট টেক্সট দিন।">
+
+      <div class="copy-btn-container">
+        <button class="copy-btn" aria-label="Copy @font-face CSS code">কপি</button>
+        <section class="code-block" aria-label="CSS @font-face code">
+<pre>
+<span>@font-face {</span>
+<span>  font-family: 'YourNewFontName';</span>
+<span>  src: url('আপনার ফন্টের woff ফাইলের লিংক') format('woff');</span>
+<span>  font-display: swap;</span>
+<span>}</span>
+</pre>
+        </section>
+      </div>
+
+      <div class="copy-btn-container">
+        <button class="copy-btn" aria-label="Copy CSS usage code">কপি</button>
+        <section class="code-block" aria-label="CSS global font usage">
+<pre>
+<span>body {</span>
+<span>  font-family: 'YourNewFontName', monospace;</span>
+<span>}</span>
+</pre>
+        </section>
+      </div>
+    </article>
+    -->
 
   </main>
 
   <section class="usage" aria-label="ব্যবহার বিধি">
     <h2>ব্যবহার বিধি</h2>
     <ol>
-      <li>HTML &lt;head&gt; এর মধ্যে ফন্ট প্রিলোড লিঙ্ক যুক্ত করুন।</li>
-      <li>CSS এ @font-face কোড যুক্ত করুন।</li>
-      <li>CSS variable বা সরাসরি font-family প্রয়োগ করুন।</li>
-      <li>ওয়েবসাইটের টেক্সটে ফন্ট স্বয়ংক্রিয়ভাবে প্রয়োগ হবে।</li>
-      <li>ব্রাউজার ক্যাশ ক্লিয়ার করতে হতে পারে সমস্যা হলে।</li>
-      <li>নতুন কার্ড যোগ করতে .cards-container এর মধ্যে HTML স্ট্রাকচার কপি করে যুক্ত করুন।</li>
+      <li>প্রথমে আপনার পছন্দের ফন্টের কার্ড থেকে `@font-face` কোডটি কপি করুন এবং আপনার CSS ফাইলে যুক্ত করুন।</li>
+      <li>এরপর CSS `body` বা নির্দিষ্ট কোনো এলিমেন্টের জন্য `font-family` কোডটি কপি করে ব্যবহার করুন।</li>
+      <li>(ঐচ্ছিক) ওয়েবসাইটের পারফরম্যান্স ভালো করার জন্য HTML `<head>` ট্যাগের মধ্যে ফন্টের `<link rel="preload">` কোড যুক্ত করতে পারেন।</li>
+      <li>ব্রাউজার ক্যাশজনিত সমস্যা এড়াতে প্রয়োজনে ক্যাশ ক্লিয়ার করুন।</li>
+      <li>নতুন ফন্ট কার্ড যুক্ত করতে, HTML ফাইলের টেমপ্লেটটি ব্যবহার করুন।</li>
     </ol>
   </section>
 
 <script>
-  // Copy to clipboard with tooltip feedback
+document.addEventListener('DOMContentLoaded', () => {
+
+  // --- THEME SWITCHER LOGIC ---
+  const themeToggle = document.getElementById('theme-toggle');
+  const body = document.body;
+  const sunIcon = document.querySelector('.sun-icon');
+  const moonIcon = document.querySelector('.moon-icon');
+
+  function setTheme(theme) {
+    body.dataset.theme = theme;
+    localStorage.setItem('theme', theme);
+    if (theme === 'dark') {
+      themeToggle.checked = true;
+      sunIcon.style.display = 'none';
+      moonIcon.style.display = 'block';
+    } else {
+      themeToggle.checked = false;
+      sunIcon.style.display = 'block';
+      moonIcon.style.display = 'none';
+    }
+  }
+
+  themeToggle.addEventListener('change', () => {
+    setTheme(themeToggle.checked ? 'dark' : 'light');
+  });
+
+  // Load saved theme from localStorage
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  setTheme(savedTheme);
+
+
+  // --- LIVE FONT PREVIEW LOGIC ---
+  document.querySelectorAll('.live-preview-input').forEach(input => {
+    input.addEventListener('input', (e) => {
+      const card = e.target.closest('.card');
+      const fontPreview = card.querySelector('.font-preview');
+      if (fontPreview) {
+        fontPreview.textContent = e.target.value || 'Preview';
+      }
+    });
+  });
+
+
+  // --- COPY TO CLIPBOARD LOGIC ---
   document.querySelectorAll('.copy-btn').forEach(btn => {
+    const container = btn.parentElement;
     const tooltip = document.createElement('span');
     tooltip.className = 'tooltip';
-    tooltip.textContent = 'কপি হয়েছে!';
-    btn.appendChild(tooltip);
+    tooltip.textContent = 'কপি হয়েছে!';
+    container.appendChild(tooltip);
 
     btn.addEventListener('click', () => {
-      const pre = btn.previousElementSibling.querySelector('pre');
+      const pre = btn.nextElementSibling.querySelector('pre');
       if (!pre) return;
 
-      // Copy plain text without line numbers and span tags
       const codeText = pre.innerText || pre.textContent;
       navigator.clipboard.writeText(codeText.trim()).then(() => {
         tooltip.classList.add('visible');
-        setTimeout(() => tooltip.classList.remove('visible'), 1800);
+        setTimeout(() => tooltip.classList.remove('visible'), 2000);
       }).catch(() => {
         tooltip.textContent = 'কপি ব্যর্থ!';
         tooltip.classList.add('visible');
         setTimeout(() => {
           tooltip.classList.remove('visible');
-          tooltip.textContent = 'কপি হয়েছে!';
-        }, 1800);
+          tooltip.textContent = 'কপি হয়েছে!';
+        }, 2000);
       });
     });
   });
+
+});
 </script>
 
 </body>
