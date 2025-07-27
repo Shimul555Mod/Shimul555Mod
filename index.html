@@ -3,133 +3,195 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ShimulUI WebFont CDN — ব্যবহার ও কপি কোড</title>
-  <meta name="description" content="ShimulUI Custom WebFont CDN Preload সহ ব্যবহার বিধি এবং সহজ কপি কোড" />
+  <title>ShimulUI WebFont CDN - Advanced Stylish Cards</title>
+  <meta name="description" content="Multiple professional stylish cards with independent copy buttons for WebFont CDN usage" />
   <style>
-    /* Reset & Basic */
+    /* Reset */
     *, *::before, *::after {
       box-sizing: border-box;
     }
     body {
       margin: 0; padding: 0;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #f0f4f8;
-      color: #333;
+      background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       padding: 2rem 1rem 4rem;
+      color: #222;
     }
     h1 {
       font-weight: 700;
       margin-bottom: 0.25rem;
-      color: #1a73e8;
+      color: #0d47a1;
       text-align: center;
+      text-shadow: 0 1px 3px rgba(13,71,161,0.4);
     }
     p.lead {
       margin-top: 0;
       font-size: 1.1rem;
-      color: #555;
+      color: #444;
       text-align: center;
-      max-width: 450px;
-      margin-bottom: 2rem;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
     }
 
-    /* Card Container */
+    /* Cards Container */
+    .cards-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      max-width: 1100px;
+      width: 100%;
+      justify-content: center;
+    }
+
+    /* Single Card */
     .card {
       background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-      max-width: 600px;
-      width: 100%;
-      padding: 2rem 2.5rem;
-      margin-bottom: 2rem;
-      transition: box-shadow 0.3s ease;
+      border-radius: 14px;
+      box-shadow:
+        0 6px 12px rgba(0, 0, 0, 0.07),
+        0 2px 6px rgba(0, 0, 0, 0.05);
+      width: 350px;
+      padding: 2rem 2.5rem 2.5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: box-shadow 0.35s ease, transform 0.3s ease;
+      position: relative;
     }
-    .card:hover {
-      box-shadow: 0 15px 40px rgba(26, 115, 232, 0.3);
+    .card:hover, .card:focus-within {
+      box-shadow:
+        0 14px 28px rgba(13, 71, 161, 0.2),
+        0 6px 12px rgba(13, 71, 161, 0.15);
+      transform: translateY(-6px);
+      outline: none;
     }
 
     /* Font Preview */
     .font-preview {
       font-family: 'ShimulUIBDFontA', monospace;
-      font-size: 2.5rem;
+      font-size: 3rem;
       font-weight: 700;
-      color: #1a73e8;
-      margin-bottom: 1rem;
-      user-select: none;
+      color: #0d47a1;
+      margin-bottom: 1.25rem;
       text-align: center;
+      user-select: none;
+      letter-spacing: 0.04em;
+      text-shadow: 0 1px 3px rgba(13,71,161,0.3);
     }
 
-    /* Code Section */
+    /* Code Block */
     .code-block {
-      background: #272822;
-      color: #f8f8f2;
+      background: #222831;
+      color: #eeeeee;
       font-family: 'Courier New', Courier, monospace;
-      padding: 1rem 1.25rem;
-      border-radius: 8px;
-      font-size: 0.9rem;
-      overflow-x: auto;
+      font-size: 0.88rem;
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
       white-space: pre-wrap;
-      line-height: 1.5;
+      overflow-x: auto;
+      box-shadow: inset 0 0 8px #0d47a1;
       position: relative;
-      margin-bottom: 1rem;
+      user-select: text;
+      margin-bottom: 1.75rem;
+      line-height: 1.5;
     }
 
     /* Copy Button */
     .copy-btn {
       position: absolute;
-      top: 8px;
-      right: 8px;
-      background: #1a73e8;
-      color: white;
+      top: 10px;
+      right: 10px;
+      background: #0d47a1;
+      color: #fff;
       border: none;
-      padding: 6px 10px;
+      padding: 6px 14px;
       border-radius: 6px;
       cursor: pointer;
+      font-weight: 600;
       font-size: 0.85rem;
-      transition: background 0.3s ease;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.15);
+      transition: background-color 0.25s ease;
       user-select: none;
+      z-index: 5;
     }
-    .copy-btn:hover {
-      background: #155ab6;
+    .copy-btn:hover, .copy-btn:focus {
+      background: #08306b;
+      outline: none;
+    }
+
+    /* Tooltip */
+    .tooltip {
+      position: absolute;
+      top: -32px;
+      right: 10px;
+      background: #0d47a1;
+      color: #fff;
+      font-size: 0.8rem;
+      padding: 5px 10px;
+      border-radius: 5px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+      white-space: nowrap;
+      user-select: none;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      z-index: 10;
+    }
+    .tooltip.visible {
+      opacity: 1;
+      pointer-events: auto;
     }
 
     /* Usage Section */
     .usage {
-      max-width: 600px;
+      max-width: 720px;
       background: #fff;
-      border-radius: 12px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-      padding: 1.8rem 2rem;
+      border-radius: 16px;
+      box-shadow:
+        0 8px 24px rgba(13, 71, 161, 0.12);
+      padding: 2rem 3rem;
       font-size: 1rem;
-      line-height: 1.6;
-      color: #444;
-      margin-top: auto;
+      line-height: 1.7;
+      color: #222;
+      margin-top: 3rem;
     }
     .usage h2 {
-      color: #1a73e8;
+      color: #0d47a1;
       margin-top: 0;
       margin-bottom: 1rem;
       font-weight: 700;
-      font-size: 1.4rem;
+      font-size: 1.6rem;
       text-align: center;
+      text-shadow: 0 1px 2px rgba(13,71,161,0.3);
     }
     .usage ol {
-      padding-left: 1.25rem;
+      padding-left: 1.5rem;
     }
     .usage ol li {
-      margin-bottom: 0.9rem;
+      margin-bottom: 1rem;
     }
 
     /* Responsive */
-    @media (max-width: 640px) {
-      .card, .usage {
-        padding: 1.5rem 1.75rem;
+    @media (max-width: 800px) {
+      .cards-container {
+        justify-content: center;
       }
+      .card {
+        width: 100%;
+        max-width: 450px;
+      }
+    }
+    @media (max-width: 400px) {
       .font-preview {
-        font-size: 2rem;
+        font-size: 2.5rem;
+      }
+      .copy-btn {
+        padding: 5px 10px;
+        font-size: 0.8rem;
       }
     }
   </style>
@@ -144,12 +206,14 @@
 <body>
 
   <h1>ShimulUI WebFont CDN</h1>
-  <p class="lead">WebFont প্রিলোড ও ব্যবহার বিধিসহ সহজ কপি কোড</p>
+  <p class="lead">Multiple stylish cards with independent copy buttons</p>
 
-  <section class="card" aria-label="Font Preview and CDN Links">
-    <div class="font-preview" aria-live="polite" aria-atomic="true">শিমুল UI BDFontA</div>
+  <main class="cards-container" aria-label="WebFont Cards">
 
-    <div class="code-block" id="codeFontFace" tabindex="0" aria-label="CSS @font-face কোড">
+    <!-- Card 1 -->
+    <article class="card" tabindex="0" aria-labelledby="card1-title">
+      <div class="font-preview" id="card1-title">শিমুল UI BDFontA</div>
+      <div class="code-block" aria-label="CSS @font-face code for card 1">
 <pre>
 @font-face {
   font-family: 'ShimulUIBDFontA';
@@ -158,10 +222,9 @@
   font-display: swap;
 }
 </pre>
-      <button class="copy-btn" data-target="codeFontFace" aria-label="Copy @font-face CSS">কপি</button>
-    </div>
-
-    <div class="code-block" id="codePreload" tabindex="0" aria-label="HTML font preload link">
+        <button class="copy-btn" aria-label="Copy @font-face CSS code">কপি</button>
+      </div>
+      <div class="code-block" aria-label="HTML preload link for card 1">
 <pre>
 &lt;link rel="preload" 
       href="https://cdn.jsdelivr.net/gh/Shimul555Mod/Shimul555Mod@main/WebFontS555M/UIFont/ShimulUIBDFontA/ShimulUIBDFontA.woff" 
@@ -169,10 +232,9 @@
       type="font/woff" 
       crossorigin="anonymous"&gt;
 </pre>
-      <button class="copy-btn" data-target="codePreload" aria-label="Copy preload link">কপি</button>
-    </div>
-
-    <div class="code-block" id="codeUsage" tabindex="0" aria-label="CSS font usage variable">
+        <button class="copy-btn" aria-label="Copy preload link">কপি</button>
+      </div>
+      <div class="code-block" aria-label="CSS variable and global font usage for card 1">
 <pre>
 :root {
   --font-global: 'ShimulUIBDFontA', monospace;
@@ -185,44 +247,106 @@ i, label, section, article, nav {
   font-family: var(--font-global) !important;
 }
 </pre>
-      <button class="copy-btn" data-target="codeUsage" aria-label="Copy CSS font usage">কপি</button>
-    </div>
-  </section>
+        <button class="copy-btn" aria-label="Copy CSS usage code">কপি</button>
+      </div>
+    </article>
+
+    <!-- Card ২ - নতুন কার্ড যোগ করতে নিচের মতো HTML কপি করে বসিয়ে দিবে -->
+    <article class="card" tabindex="0" aria-labelledby="card2-title">
+      <div class="font-preview" id="card2-title">ShimulUIBD FontB</div>
+      <div class="code-block" aria-label="CSS @font-face code for card 2">
+<pre>
+@font-face {
+  font-family: 'ShimulUIBDFontB';
+  src: url('https://cdn.jsdelivr.net/gh/Shimul555Mod/Shimul555Mod@main/WebFontS555M/UIFont/ShimulUIBDFontB/ShimulUIBDFontB.woff') format('woff');
+  font-style: normal;
+  font-display: swap;
+}
+</pre>
+        <button class="copy-btn" aria-label="Copy @font-face CSS code">কপি</button>
+      </div>
+      <div class="code-block" aria-label="HTML preload link for card 2">
+<pre>
+&lt;link rel="preload" 
+      href="https://cdn.jsdelivr.net/gh/Shimul555Mod/Shimul555Mod@main/WebFontS555M/UIFont/ShimulUIBDFontB/ShimulUIBDFontB.woff" 
+      as="font" 
+      type="font/woff" 
+      crossorigin="anonymous"&gt;
+</pre>
+        <button class="copy-btn" aria-label="Copy preload link">কপি</button>
+      </div>
+      <div class="code-block" aria-label="CSS variable and global font usage for card 2">
+<pre>
+:root {
+  --font-global: 'ShimulUIBDFontB', monospace;
+}
+*,
+body, html, h1, h2, h3, h4, h5, h6,
+p, a, span, div, input, textarea,
+code, pre, button, b, strong, em,
+i, label, section, article, nav {
+  font-family: var(--font-global) !important;
+}
+</pre>
+        <button class="copy-btn" aria-label="Copy CSS usage code">কপি</button>
+      </div>
+    </article>
+
+  </main>
 
   <section class="usage" aria-label="ব্যবহার বিধি">
     <h2>ব্যবহার বিধি</h2>
     <ol>
-      <li>প্রথমে HTML &lt;head&gt; এর মধ্যে <strong>preload লিঙ্ক</strong> যুক্ত করুন।</li>
-      <li>তারপর CSS এ <strong>@font-face</strong> কোড যুক্ত করুন।</li>
-      <li>পরবর্তীতে CSS variable এবং global font family প্রয়োগ করুন।</li>
-      <li>এখন যেকোনো টেক্সট এলিমেন্টে স্বয়ংক্রিয়ভাবে ফন্ট প্রযোজ্য হবে।</li>
-      <li>যদি কোনো সমস্যা হয়, ব্রাউজার ক্যাশ ক্লিয়ার করুন বা Ctrl+F5 চাপুন।</li>
+      <li>প্রথমে HTML &lt;head&gt; এর মধ্যে ফন্ট প্রিলোড লিঙ্ক যুক্ত করুন।</li>
+      <li>পরবর্তী CSS এ @font-face কোড যুক্ত করুন।</li>
+      <li>তারপর CSS variable বা সরাসরি font-family প্রয়োগ করুন।</li>
+      <li>ওয়েবসাইটের টেক্সটে ফন্ট স্বয়ংক্রিয়ভাবে প্রয়োগ হবে।</li>
+      <li>ব্রাউজার ক্যাশ ক্লিয়ার করতে হতে পারে সমস্যা হলে।</li>
+      <li>নতুন কার্ড যোগ করতে .cards-container এর মধ্যে HTML structure কপি করে যুক্ত করুন।</li>
     </ol>
   </section>
 
   <script>
-    // Copy to clipboard function
-    document.querySelectorAll('.copy-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const targetId = btn.getAttribute('data-target');
-        const codeBlock = document.getElementById(targetId);
+    // Copy function with tooltip
+    document.querySelectorAll('.copy-btn').forEach(button => {
+      // Create tooltip span inside button
+      const tooltip = document.createElement('span');
+      tooltip.className = 'tooltip';
+      tooltip.textContent = 'কপি হয়েছে!';
+      button.appendChild(tooltip);
+
+      button.addEventListener('click', () => {
+        // Find associated code block <pre>
+        const codeBlock = button.previousElementSibling;
         if (!codeBlock) return;
-        // Select the text inside <pre>
+
+        // Select and copy text
         const range = document.createRange();
-        range.selectNodeContents(codeBlock.querySelector('pre'));
+        range.selectNodeContents(codeBlock);
         const selection = window.getSelection();
         selection.removeAllRanges();
         selection.addRange(range);
+
         try {
           const successful = document.execCommand('copy');
           if (successful) {
-            btn.textContent = 'কপি হয়েছে!';
-            setTimeout(() => btn.textContent = 'কপি', 1500);
+            tooltip.classList.add('visible');
+            setTimeout(() => tooltip.classList.remove('visible'), 1800);
           } else {
-            btn.textContent = 'কপি করতে পারেননি';
+            tooltip.textContent = 'কপি ব্যর্থ';
+            tooltip.classList.add('visible');
+            setTimeout(() => {
+              tooltip.classList.remove('visible');
+              tooltip.textContent = 'কপি হয়েছে!';
+            }, 1800);
           }
         } catch (err) {
-          btn.textContent = 'কপি সাপোর্ট নেই';
+          tooltip.textContent = 'কপি সাপোর্ট নেই';
+          tooltip.classList.add('visible');
+          setTimeout(() => {
+            tooltip.classList.remove('visible');
+            tooltip.textContent = 'কপি হয়েছে!';
+          }, 1800);
         }
         selection.removeAllRanges();
       });
