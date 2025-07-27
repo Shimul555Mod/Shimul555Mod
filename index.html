@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ShimulUI WebFont CDN — ব্যবহার ও কপি কোড</title>
+  <meta name="description" content="ShimulUI Custom WebFont CDN Preload সহ ব্যবহার বিধি এবং সহজ কপি কোড" />
+  <style>
+    /* Reset & Basic */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0; padding: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f4f8;
+      color: #333;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 2rem 1rem 4rem;
+    }
+    h1 {
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+      color: #1a73e8;
+      text-align: center;
+    }
+    p.lead {
+      margin-top: 0;
+      font-size: 1.1rem;
+      color: #555;
+      text-align: center;
+      max-width: 450px;
+      margin-bottom: 2rem;
+    }
+
+    /* Card Container */
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      max-width: 600px;
+      width: 100%;
+      padding: 2rem 2.5rem;
+      margin-bottom: 2rem;
+      transition: box-shadow 0.3s ease;
+    }
+    .card:hover {
+      box-shadow: 0 15px 40px rgba(26, 115, 232, 0.3);
+    }
+
+    /* Font Preview */
+    .font-preview {
+      font-family: 'ShimulUIBDFontA', monospace;
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: #1a73e8;
+      margin-bottom: 1rem;
+      user-select: none;
+      text-align: center;
+    }
+
+    /* Code Section */
+    .code-block {
+      background: #272822;
+      color: #f8f8f2;
+      font-family: 'Courier New', Courier, monospace;
+      padding: 1rem 1.25rem;
+      border-radius: 8px;
+      font-size: 0.9rem;
+      overflow-x: auto;
+      white-space: pre-wrap;
+      line-height: 1.5;
+      position: relative;
+      margin-bottom: 1rem;
+    }
+
+    /* Copy Button */
+    .copy-btn {
+      position: absolute;
+      top: 8px;
+      right: 8px;
+      background: #1a73e8;
+      color: white;
+      border: none;
+      padding: 6px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background 0.3s ease;
+      user-select: none;
+    }
+    .copy-btn:hover {
+      background: #155ab6;
+    }
+
+    /* Usage Section */
+    .usage {
+      max-width: 600px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+      padding: 1.8rem 2rem;
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #444;
+      margin-top: auto;
+    }
+    .usage h2 {
+      color: #1a73e8;
+      margin-top: 0;
+      margin-bottom: 1rem;
+      font-weight: 700;
+      font-size: 1.4rem;
+      text-align: center;
+    }
+    .usage ol {
+      padding-left: 1.25rem;
+    }
+    .usage ol li {
+      margin-bottom: 0.9rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .card, .usage {
+        padding: 1.5rem 1.75rem;
+      }
+      .font-preview {
+        font-size: 2rem;
+      }
+    }
+  </style>
+
+  <!-- Preload font -->
+  <link rel="preload" 
+        href="https://cdn.jsdelivr.net/gh/Shimul555Mod/Shimul555Mod@main/WebFontS555M/UIFont/ShimulUIBDFontA/ShimulUIBDFontA.woff" 
+        as="font" 
+        type="font/woff" 
+        crossorigin="anonymous" />
+</head>
+<body>
+
+  <h1>ShimulUI WebFont CDN</h1>
+  <p class="lead">WebFont প্রিলোড ও ব্যবহার বিধিসহ সহজ কপি কোড</p>
+
+  <section class="card" aria-label="Font Preview and CDN Links">
+    <div class="font-preview" aria-live="polite" aria-atomic="true">শিমুল UI BDFontA</div>
+
+    <div class="code-block" id="codeFontFace" tabindex="0" aria-label="CSS @font-face কোড">
+<pre>
+@font-face {
+  font-family: 'ShimulUIBDFontA';
+  src: url('https://cdn.jsdelivr.net/gh/Shimul555Mod/Shimul555Mod@main/WebFontS555M/UIFont/ShimulUIBDFontA/ShimulUIBDFontA.woff') format('woff');
+  font-style: normal;
+  font-display: swap;
+}
+</pre>
+      <button class="copy-btn" data-target="codeFontFace" aria-label="Copy @font-face CSS">কপি</button>
+    </div>
+
+    <div class="code-block" id="codePreload" tabindex="0" aria-label="HTML font preload link">
+<pre>
+&lt;link rel="preload" 
+      href="https://cdn.jsdelivr.net/gh/Shimul555Mod/Shimul555Mod@main/WebFontS555M/UIFont/ShimulUIBDFontA/ShimulUIBDFontA.woff" 
+      as="font" 
+      type="font/woff" 
+      crossorigin="anonymous"&gt;
+</pre>
+      <button class="copy-btn" data-target="codePreload" aria-label="Copy preload link">কপি</button>
+    </div>
+
+    <div class="code-block" id="codeUsage" tabindex="0" aria-label="CSS font usage variable">
+<pre>
+:root {
+  --font-global: 'ShimulUIBDFontA', monospace;
+}
+*,
+body, html, h1, h2, h3, h4, h5, h6,
+p, a, span, div, input, textarea,
+code, pre, button, b, strong, em,
+i, label, section, article, nav {
+  font-family: var(--font-global) !important;
+}
+</pre>
+      <button class="copy-btn" data-target="codeUsage" aria-label="Copy CSS font usage">কপি</button>
+    </div>
+  </section>
+
+  <section class="usage" aria-label="ব্যবহার বিধি">
+    <h2>ব্যবহার বিধি</h2>
+    <ol>
+      <li>প্রথমে HTML &lt;head&gt; এর মধ্যে <strong>preload লিঙ্ক</strong> যুক্ত করুন।</li>
+      <li>তারপর CSS এ <strong>@font-face</strong> কোড যুক্ত করুন।</li>
+      <li>পরবর্তীতে CSS variable এবং global font family প্রয়োগ করুন।</li>
+      <li>এখন যেকোনো টেক্সট এলিমেন্টে স্বয়ংক্রিয়ভাবে ফন্ট প্রযোজ্য হবে।</li>
+      <li>যদি কোনো সমস্যা হয়, ব্রাউজার ক্যাশ ক্লিয়ার করুন বা Ctrl+F5 চাপুন।</li>
+    </ol>
+  </section>
+
+  <script>
+    // Copy to clipboard function
+    document.querySelectorAll('.copy-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const targetId = btn.getAttribute('data-target');
+        const codeBlock = document.getElementById(targetId);
+        if (!codeBlock) return;
+        // Select the text inside <pre>
+        const range = document.createRange();
+        range.selectNodeContents(codeBlock.querySelector('pre'));
+        const selection = window.getSelection();
+        selection.removeAllRanges();
+        selection.addRange(range);
+        try {
+          const successful = document.execCommand('copy');
+          if (successful) {
+            btn.textContent = 'কপি হয়েছে!';
+            setTimeout(() => btn.textContent = 'কপি', 1500);
+          } else {
+            btn.textContent = 'কপি করতে পারেননি';
+          }
+        } catch (err) {
+          btn.textContent = 'কপি সাপোর্ট নেই';
+        }
+        selection.removeAllRanges();
+      });
+    });
+  </script>
+
+</body>
+</html>
