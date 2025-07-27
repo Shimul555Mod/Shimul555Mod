@@ -1,1 +1,13 @@
+<!-- [Preload Fonts for Faster Loading || <head> paste] -->
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/Shimul555Mod/Shimul555Mod@main/WebFontS555M/UIFont/WebFontShimulUI1/WebFontShimulUI1.woff2" as="font" type="font/woff2" crossorigin='anonymous' />
+<link rel="preload" href="https://cdn.jsdelivr.net/gh/Shimul555Mod/Shimul555Mod@main/WebFontS555M/UIFont/WebFontShimulUI1/WebFontShimulUI1.woff" as="font" type="font/woff" crossorigin='anonymous' />
 
+/* WebFont ShimulUI CDN Setup */
+@font-face {
+  font-family: 'WebFont ShimulUI 01';
+  src: url('https://cdn.jsdelivr.net/gh/Shimul555Mod/Shimul555Mod@main/WebFontS555M/UIFont/WebFontShimulUI1/WebFontShimulUI1.woff2') format('woff2'),
+       url('https://cdn.jsdelivr.net/gh/Shimul555Mod/Shimul555Mod@main/WebFontS555M/UIFont/WebFontShimulUI1/WebFontShimulUI1.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
